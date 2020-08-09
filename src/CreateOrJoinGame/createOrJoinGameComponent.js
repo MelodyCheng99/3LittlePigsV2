@@ -8,6 +8,8 @@ import { createGameCode } from '../actions'
 
 import './createOrJoinGameComponent.css'
 
+import StartGameComponent from '../StartGameComponent/startGameComponent'
+
 const useStyles = makeStyles(_ => ({
     greenFab: {
         width: 200,
@@ -27,48 +29,47 @@ const useStyles = makeStyles(_ => ({
     }
 }))
 
-let CreateOrJoinGame = ({ 
+let CreateOrJoinGame = ({
     gameCode,
-    createGameCode 
+    createGameCode
 }) => {
     const classes = useStyles()
 
-    return (
-        <div>
-            <div className="createGameContainer">
-                <Fab
-                    variant="extended"
-                    color="inherit"
-                    className={ classes.greenFab }
-                    onClick={ createGameCode }>
-                    Create New Game
-                </Fab>
+    if (gameCode != null) {
+        return (
+            <StartGameComponent
+                gameCode={gameCode} />
+        )
+    } else {
+        return (
+            <div>
+                <div className="createGameContainer">
+                    <Fab
+                        variant="extended"
+                        color="inherit"
+                        className={classes.greenFab}
+                        onClick={createGameCode}>
+                        Create New Game
+                    </Fab>
                 </div>
                 <div className="joinGameContainer">
-                <Fab
-                    variant="extended"
-                    color="inherit"
-                    className={ classes.blueFab }>
-                    Join Existing Game
-                </Fab>
-
-                {/* Just for Testing */}
-                <Fab
-                    variant="extended"
-                    color="inherit"
-                    className={ classes.greenFab }>
-                    { gameCode }
-                </Fab>
+                    <Fab
+                        variant="extended"
+                        color="inherit"
+                        className={classes.blueFab}>
+                        Join Existing Game
+                    </Fab>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 const mapStateToProps = (state) => ({
     gameCode: state.gameCode,
 })
 CreateOrJoinGame = connect(
-    mapStateToProps, 
+    mapStateToProps,
     null
 )(CreateOrJoinGame)
 
@@ -76,7 +77,7 @@ const mapDispatchToProps = {
     createGameCode: createGameCode,
 }
 CreateOrJoinGame = connect(
-    null, 
+    null,
     mapDispatchToProps
 )(CreateOrJoinGame)
 
