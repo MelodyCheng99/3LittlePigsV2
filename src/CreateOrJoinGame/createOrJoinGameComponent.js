@@ -8,7 +8,7 @@ import { createGameCode } from '../actions'
 
 import './createOrJoinGameComponent.css'
 
-import StartGameComponent from '../StartGameComponent/startGameComponent'
+import StartGame from '../StartGameComponent/startGameComponent'
 
 const useStyles = makeStyles(_ => ({
     greenFab: {
@@ -37,8 +37,7 @@ let CreateOrJoinGame = ({
 
     if (gameCode != null) {
         return (
-            <StartGameComponent
-                gameCode={gameCode} />
+            <StartGame gameCode={gameCode} />
         )
     } else {
         return (

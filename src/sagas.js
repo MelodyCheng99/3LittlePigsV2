@@ -5,8 +5,14 @@ function* postGameCode() {
     yield put({ type: 'GAME_CODE_CREATED', gameCode: gameCodeResult.gameCode })
 }
 
+function* postPlayer() {
+    const playerResult = yield fetch('/create-player').then(response => response.json() )
+    yield put({ type: 'PLAYER_CREATED', player: playerResult.player })
+}
+
 function* gamesWatcher() {
     yield takeLatest('CREATE_GAME_CODE', postGameCode)
+    yield takeLatest('CREATE_PLAYER', postPlayer)
 }
 
 export default function* rootSaga() {

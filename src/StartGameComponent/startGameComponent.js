@@ -3,6 +3,9 @@ import { Typography, Fab } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { green } from '@material-ui/core/colors'
 
+import { connect } from 'react-redux'
+import { createPlayer } from '../actions'
+
 import './startGameComponent.css'
 
 const useStyles = makeStyles(_ => ({
@@ -16,7 +19,11 @@ const useStyles = makeStyles(_ => ({
     }
 }))
 
-const StartGameComponent = ({ gameCode }) => {
+let StartGame = ({ 
+    gameCode,
+    createPlayer,
+    player
+}) => {
     const classes = useStyles()
 
     return (
@@ -37,5 +44,18 @@ const StartGameComponent = ({ gameCode }) => {
         </div>
     )
 }
+
+const mapStateToProps = (state) => ({
+    player: state.player,
+})
+
+const mapDispatchToProps = {
+    createPlayer: createPlayer,
+}
+
+StartGame = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(StartGame)
 
 export default StartGameComponent
