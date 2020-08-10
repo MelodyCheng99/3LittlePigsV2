@@ -9,6 +9,13 @@ import mud from '../images/mud.png'
 import stone_stick from '../images/stone_or_stick.png'
 import brick_mud from '../images/brick_or_mud.png'
 import flower from '../images/flower.png'
+import water from '../images/water.png'
+import apple from '../images/apple.png'
+import wolf_stick from '../images/wolf_stick.png'
+import wolf_brick from '../images/wolf_brick.png'
+import wolf_stone from '../images/wolf_stone.png'
+import glass_flower from '../images/glass_flower.png'
+import pot_water from '../images/pot_water.png'
 
 const Cards = ({ cards }) => {
     let cardViews = []
@@ -60,6 +67,55 @@ const Cards = ({ cards }) => {
                 <img
                     src={flower}
                     alt="flower card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "water") {
+            cardViews.push(
+                <img
+                    src={water}
+                    alt="water card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "apple") {
+            cardViews.push(
+                <img
+                    src={apple}
+                    alt="apple card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "wolf_stick") {
+            cardViews.push(
+                <img
+                    src={wolf_stick}
+                    alt="wolf for stick card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "wolf_brick") {
+            cardViews.push(
+                <img
+                    src={wolf_brick}
+                    alt="wolf for brick card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "wolf_stone") {
+            cardViews.push(
+                <img
+                    src={wolf_stone}
+                    alt="wolf for stone card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "glass_flower") {
+            cardViews.push(
+                <img
+                    src={glass_flower}
+                    alt="glass for flower card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "pot_water") {
+            cardViews.push(
+                <img
+                    src={pot_water}
+                    alt="pot for water card"
                     className="cardImage" />
             )
         }
