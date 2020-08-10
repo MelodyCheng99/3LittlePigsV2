@@ -1,13 +1,25 @@
 import { put, takeLatest, all } from 'redux-saga/effects'
 
 function* postGameCode() {
-    const gameCodeResult = yield fetch('/create-game').then(response => response.json() )
+    const gameCodeResult = yield fetch(`/create-game`).then(response => response.json())
     yield put({ type: 'GAME_CODE_CREATED', gameCode: gameCodeResult.gameCode })
 }
 
-function* postPlayer() {
-    const playerResult = yield fetch('/create-player').then(response => response.json() )
-    yield put({ type: 'PLAYER_CREATED', board: playerResult.board, cards: playerResult.cards })
+function* postPlayer(action) {
+    let formData = new FormData()
+    formData.append('game_code', action.gameCode)
+    formData.append('username', action.username)
+    const playerResult = yield fetch('/create-player', {
+        method: 'POST',
+        body: formData
+    })
+        .then(response => response.json())
+    yield put({ 
+        type: 'PLAYER_CREATED', 
+        username: action.username,
+        board: playerResult.board, 
+        cards: playerResult.cards
+    })
 }
 
 function* gamesWatcher() {

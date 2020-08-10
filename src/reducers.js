@@ -3,7 +3,7 @@ const reducer = (state = {}, action) => {
         case 'GAME_CODE_CREATED':
             return { ...state, gameCode: action.gameCode }
         case 'PLAYER_CREATED':
-            return { ...state, board: action.board, cards: action.cards }
+            return { ...state, username: action.username, board: action.board, cards: action.cards }
         default:
             return state
     }
