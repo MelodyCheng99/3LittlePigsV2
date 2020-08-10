@@ -1,0 +1,13 @@
+.cardsContainer {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+}
+
+.cardImage {
+    width: 13%;
+    height: 13%;
+    margin: 5px;
+}
