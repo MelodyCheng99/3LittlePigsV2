@@ -8,7 +8,7 @@ import { createGameCode } from '../actions'
 
 import './createOrJoinGameComponent.css'
 
-import StartGameComponent from '../StartGameComponent/startGameComponent'
+import StartGame from '../StartGame/startGameComponent'
 
 const useStyles = makeStyles(_ => ({
     greenFab: {
@@ -37,8 +37,7 @@ let CreateOrJoinGame = ({
 
     if (gameCode != null) {
         return (
-            <StartGameComponent
-                gameCode={gameCode} />
+            <StartGame gameCode={gameCode} />
         )
     } else {
         return (
@@ -68,16 +67,12 @@ let CreateOrJoinGame = ({
 const mapStateToProps = (state) => ({
     gameCode: state.gameCode,
 })
-CreateOrJoinGame = connect(
-    mapStateToProps,
-    null
-)(CreateOrJoinGame)
 
 const mapDispatchToProps = {
     createGameCode: createGameCode,
 }
 CreateOrJoinGame = connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(CreateOrJoinGame)
 
