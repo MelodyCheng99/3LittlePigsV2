@@ -9,7 +9,11 @@ const Game = ({
     cards
 }) => {
     return (
-        <Board board={board} />
+        <div>
+            <div className="boardContainer">
+                <Board board={board} />
+            </div>
+        </div>
     )
 }
 
