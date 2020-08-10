@@ -4,11 +4,12 @@ import { makeStyles } from '@material-ui/core/styles'
 import { green, blue } from '@material-ui/core/colors'
 
 import { connect } from 'react-redux'
-import { createGameCode } from '../actions'
+import { createGameCode, joinGame } from '../actions'
 
 import './createOrJoinGameComponent.css'
 
 import StartGame from '../StartGame/startGameComponent'
+import JoinGame from '../JoinGame/joinGameComponent'
 
 const useStyles = makeStyles(_ => ({
     greenFab: {
@@ -31,7 +32,9 @@ const useStyles = makeStyles(_ => ({
 
 let CreateOrJoinGame = ({
     gameCode,
-    createGameCode
+    createGameCode,
+    joinGame,
+    joinGameRequested
 }) => {
     const classes = useStyles()
 
@@ -39,6 +42,10 @@ let CreateOrJoinGame = ({
         return (
             <StartGame gameCode={gameCode} />
         )
+    } else if (joinGameRequested == true) {
+      return (
+          <JoinGame />
+      )  
     } else {
         return (
             <div>
@@ -55,7 +62,8 @@ let CreateOrJoinGame = ({
                     <Fab
                         variant="extended"
                         color="inherit"
-                        className={classes.blueFab}>
+                        className={classes.blueFab}
+                        onClick={joinGame}>
                         Join Existing Game
                     </Fab>
                 </div>
@@ -66,10 +74,12 @@ let CreateOrJoinGame = ({
 
 const mapStateToProps = (state) => ({
     gameCode: state.gameCode,
+    joinGameRequested: state.joinGameRequested,
 })
 
 const mapDispatchToProps = {
     createGameCode: createGameCode,
+    joinGame: joinGame,
 }
 CreateOrJoinGame = connect(
     mapStateToProps,
