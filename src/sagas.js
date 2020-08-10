@@ -7,7 +7,7 @@ function* postGameCode() {
 
 function* postPlayer() {
     const playerResult = yield fetch('/create-player').then(response => response.json() )
-    yield put({ type: 'PLAYER_CREATED', player: playerResult.player })
+    yield put({ type: 'PLAYER_CREATED', board: playerResult.board, cards: playerResult.cards })
 }
 
 function* gamesWatcher() {
