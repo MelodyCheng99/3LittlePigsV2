@@ -1,0 +1,11 @@
+.rowContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.image {
+    width: 20%;
+    height: 20%;
+}

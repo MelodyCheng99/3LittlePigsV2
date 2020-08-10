@@ -19,7 +19,7 @@ def create_game():
 def create_player():
     boardsResult = firebase.get('/boards', None)
     boardsResult.pop(0)
-    board = boardsResult[int(random.uniform(0, len(boardsResult) - 1))]
+    board = random.sample(boardsResult, 1)[0]
 
     cardsResult = firebase.get('/cards', None)
     cardsResult.pop(0)
