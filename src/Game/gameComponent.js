@@ -3,6 +3,7 @@ import React from 'react'
 import './gameComponent.css'
 
 import Board from '../Board/boardComponent'
+import Cards from '../Cards/cardsComponent'
 
 const Game = ({
     board,
@@ -10,6 +11,7 @@ const Game = ({
 }) => {
     return (
         <div>
+            <Cards cards={cards} />
             <div className="boardContainer">
                 <Board board={board} />
             </div>
