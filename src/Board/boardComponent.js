@@ -10,11 +10,14 @@ import vp_3 from '../images/vp_3.png'
 import vp_5 from '../images/vp_5.png'
 import vp_7 from '../images/vp_7.png'
 
-const Board = ({ board }) => {
+const Board = ({ 
+    board,
+    username
+}) => {
     return (
         <Box border={3}>
             <div className="rowContainer">
-                <Typography>{board.name}'s House</Typography>
+                <Typography>{username}'s House</Typography>
                 <img
                     src={board.resource == "brick" ? brick : board.resource == "mud" ? mud : stick}
                     alt="board resource"

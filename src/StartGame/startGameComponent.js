@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, Fab } from '@material-ui/core'
+import { Typography, Fab, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { green } from '@material-ui/core/colors'
 
@@ -23,15 +23,16 @@ const useStyles = makeStyles(_ => ({
 
 let StartGame = ({ 
     gameCode,
+    username,
     createPlayer,
     board,
     cards
 }) => {
     const classes = useStyles()
 
-    if (board != null && cards != null) {
+    if (board != null && cards != null && username != null) {
         return (
-            <Game board={board} cards={cards} />
+            <Game board={board} cards={cards} username={username} />
         )
     } else {
         return (
@@ -41,12 +42,23 @@ let StartGame = ({
                         Game Code: {gameCode}
                     </Typography>
                 </div>
+                <div className="usernameContainer">
+                    <TextField 
+                        required
+                        variant="outlined" 
+                        label="Username"
+                        onChange={(event) => username = event.target.value} />
+                </div>
                 <div className="startGameContainer">
                     <Fab
                         variant="extended"
                         color="inherit"
                         className={classes.greenFab}
-                        onClick={createPlayer}>
+                        onClick={() => { 
+                            if (username != null) {
+                                createPlayer(gameCode, username) 
+                            }
+                        }}>
                         Start Game
                     </Fab>
                 </div>
@@ -56,6 +68,7 @@ let StartGame = ({
 }
 
 const mapStateToProps = (state) => ({
+    username: state.username,
     board: state.board,
     cards: state.cards,
 })

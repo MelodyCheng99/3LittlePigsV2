@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 import random
 import string
@@ -15,8 +15,11 @@ def create_game():
         'gameCode': ''.join((random.choice(string.ascii_letters + string.digits) for i in range(5)))
     }
 
-@app.route('/create-player')
+@app.route('/create-player', methods=['POST'])
 def create_player():
+    gameCode = request.form.get('game_code')
+    username = request.form.get('username')
+
     boardsResult = firebase.get('/boards', None)
     boardsResult.pop(0)
     board = random.sample(boardsResult, 1)[0]
@@ -25,8 +28,19 @@ def create_player():
     cardsResult.pop(0)
     cards = random.sample(cardsResult, 7)
 
-    return {
+    result = {
         'board': board,
         'cards': cards
     }
+    firebase.post(
+        '/games', 
+        { 
+            gameCode: {
+                username: result
+            }
+        }
+    )
+    return result
+
+    
     
