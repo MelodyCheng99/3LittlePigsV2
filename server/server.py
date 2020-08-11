@@ -28,12 +28,29 @@ def create_player():
     gameCode = request.form.get('game_code')
     username = request.form.get('username')
 
-    boardsResult = db.reference('/boards').get()
+    # boardsResult = db.reference('/boards').get()
+    # Check if gameCode already exists
+    gamesResult = firebase.get('/games', None)
+    existingGame = None
+    for gameId in gamesResult.keys():
+        if gameCode in gamesResult[gameId]:
+            existingGame = gamesResult[gameId][gameCode]
+            break
+
+    boardsResult = firebase.get('/boards', None)
     boardsResult.pop(0)
-    board = random.sample(boardsResult, 1)[0]
 
     cardsResult = db.reference('/cards').get()
     cardsResult.pop(0)
+
+    # Remove boards & cards that have already been assigned
+    if existingGame != None:
+        for player in existingGame.values():
+            boardsResult.remove(player['board'])
+            for card in player['cards']:
+                cardsResult.remove(card)
+
+    board = random.sample(boardsResult, 1)[0]
     cards = random.sample(cardsResult, 7)
 
     stats = {
