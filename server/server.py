@@ -1,13 +1,21 @@
 from flask import Flask, request
 
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import db
+
 import random
 import string
 
-from firebase import firebase
-
 app = Flask(__name__)
 
-firebase = firebase.FirebaseApplication('https://threelittlepigsv2.firebaseio.com', None)
+cred = credentials.Certificate('../threelittlepigsv2-b4ec708c9fff.json')
+firebase_admin.initialize_app(
+    cred,
+    {
+        'databaseURL': 'https://threelittlepigsv2.firebaseio.com'
+    }
+)
 
 @app.route('/create-game')
 def create_game():
@@ -20,11 +28,11 @@ def create_player():
     gameCode = request.form.get('game_code')
     username = request.form.get('username')
 
-    boardsResult = firebase.get('/boards', None)
+    boardsResult = db.reference('/boards').get()
     boardsResult.pop(0)
     board = random.sample(boardsResult, 1)[0]
 
-    cardsResult = firebase.get('/cards', None)
+    cardsResult = db.reference('/cards').get()
     cardsResult.pop(0)
     cards = random.sample(cardsResult, 7)
 
@@ -50,15 +58,5 @@ def create_player():
         'stats': stats
     }
     
-    firebase.post(
-        '/games', 
-        { 
-            gameCode: {
-                username: result
-            }
-        }
-    )
+    db.reference('games').child(gameCode).set({ username: result })
     return result
-
-    
-    
