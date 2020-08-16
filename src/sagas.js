@@ -18,7 +18,8 @@ function* postPlayer(action) {
         type: 'PLAYER_CREATED', 
         username: action.username,
         board: playerResult.board, 
-        cards: playerResult.cards
+        cards: playerResult.cards,
+        stats: playerResult.stats
     })
 }
 

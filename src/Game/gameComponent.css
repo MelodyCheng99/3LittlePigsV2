@@ -6,3 +6,12 @@
     width: 33%;
     transform: translate(-50%, -50%);
 }
+
+.statsContainer {
+    margin: 0;
+    position: absolute;
+    left: 92%;
+    top: 82.5%;
+    width: 15%;
+    transform: translate(-50%, -50%);
+}
