@@ -19,6 +19,7 @@ firebase_admin.initialize_app(
 
 @app.route('/create-game')
 def create_game():
+    # TODO: Ensure gameCode doesn't already exist in database
     return {
         'gameCode': ''.join((random.choice(string.ascii_letters + string.digits) for i in range(5)))
     }
@@ -28,24 +29,16 @@ def create_player():
     gameCode = request.form.get('game_code')
     username = request.form.get('username')
 
-    # boardsResult = db.reference('/boards').get()
-    # Check if gameCode already exists
-    gamesResult = firebase.get('/games', None)
-    existingGame = None
-    for gameId in gamesResult.keys():
-        if gameCode in gamesResult[gameId]:
-            existingGame = gamesResult[gameId][gameCode]
-            break
+    gameResult = db.reference('games/' + gameCode).get()
 
-    boardsResult = firebase.get('/boards', None)
+    boardsResult = db.reference('boards').get()
     boardsResult.pop(0)
 
-    cardsResult = db.reference('/cards').get()
+    cardsResult = db.reference('cards').get()
     cardsResult.pop(0)
 
-    # Remove boards & cards that have already been assigned
-    if existingGame != None:
-        for player in existingGame.values():
+    if gameResult != None:
+        for player in gameResult.values():
             boardsResult.remove(player['board'])
             for card in player['cards']:
                 cardsResult.remove(card)
@@ -74,6 +67,10 @@ def create_player():
         'cards': cards,
         'stats': stats
     }
-    
-    db.reference('games').child(gameCode).set({ username: result })
+
+    if gameResult != None:
+        db.reference('games').child(gameCode).update({ username: result })
+    else:
+        db.reference('games').child(gameCode).set({ username: result })
+
     return result
