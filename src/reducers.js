@@ -10,6 +10,8 @@ const reducer = (state = {}, action) => {
                 cards: action.cards,
                 stats: action.stats 
             }
+        case 'JOIN_GAME':
+            return { ...state, joinGameRequested: true }
         default:
             return state
     }
