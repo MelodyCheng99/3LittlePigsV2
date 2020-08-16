@@ -28,10 +28,28 @@ def create_player():
     cardsResult.pop(0)
     cards = random.sample(cardsResult, 7)
 
+    stats = {
+        'Coins': 3,
+        'Bricks': 0,
+        'Sticks': 0,
+        'Mud': 0,
+        'Stones': 0,
+        'Wolves': 0,
+        'Pots': 0,
+        'Spoons': 0,
+        'Apples': 0,
+        'Flowers': 0,
+        'Glass': 0,
+        'Water': 0,
+        'Victory Points': 0
+    }
+
     result = {
         'board': board,
-        'cards': cards
+        'cards': cards,
+        'stats': stats
     }
+    
     firebase.post(
         '/games', 
         { 
