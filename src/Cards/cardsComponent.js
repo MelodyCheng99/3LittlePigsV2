@@ -16,6 +16,13 @@ import wolf_brick from '../images/wolf_brick.png'
 import wolf_stone from '../images/wolf_stone.png'
 import glass_flower from '../images/glass_flower.png'
 import pot_water from '../images/pot_water.png'
+import spoon_apple from '../images/spoon_apple.png'
+import vp_3_yellow from '../images/vp_3_yellow.png'
+import vp_2_pink from '../images/vp_2_pink.png'
+import vp_2_brown from '../images/vp_2_brown.png'
+import trade_right from '../images/market_right.png'
+import trade_left from '../images/market_left.png'
+import trade_both from '../images/market_both.png'
 
 const Cards = ({ cards }) => {
     let cardViews = []
@@ -116,6 +123,55 @@ const Cards = ({ cards }) => {
                 <img
                     src={pot_water}
                     alt="pot for water card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "spoon_apple") {
+            cardViews.push(
+                <img
+                    src={spoon_apple}
+                    alt="spoon for apple card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "vp_3_yellow") {
+            cardViews.push(
+                <img
+                    src={vp_3_yellow}
+                    alt="3 yellow victory points card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "vp_2_pink") {
+            cardViews.push(
+                <img
+                    src={vp_2_pink}
+                    alt="2 pink victory points card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "vp_2_brown") {
+            cardViews.push(
+                <img
+                    src={vp_2_brown}
+                    alt="2 brown victory points card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "trade_right") {
+            cardViews.push(
+                <img
+                    src={trade_right}
+                    alt="cheaper trade with right side card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "trade_left") {
+            cardViews.push(
+                <img
+                    src={trade_left}
+                    alt="cheaper trade with left side card"
+                    className="cardImage" />
+            )
+        } else if (card.description === "trade_both") {
+            cardViews.push(
+                <img
+                    src={trade_both}
+                    alt="cheaper trade with both sides card"
                     className="cardImage" />
             )
         }
