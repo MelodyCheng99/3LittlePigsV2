@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CreateOrJoinGame from './CreateOrJoinGame/createOrJoinGameComponent';
+import CreateOrJoinGame from './components/CreateOrJoinGame/createOrJoinGameComponent';
 
 export default class App extends React.Component {
   render() {

@@ -3,12 +3,12 @@ import { Box, Typography } from '@material-ui/core'
 
 import './boardComponent.css'
 
-import brick from '../images/brick_icon.png'
-import mud from '../images/mud_icon.png'
-import stick from '../images/stick_icon.png'
-import vp_3 from '../images/vp_3.png'
-import vp_5 from '../images/vp_5.png'
-import vp_7 from '../images/vp_7.png'
+import brick from '../../images/brick_icon.png'
+import mud from '../../images/mud_icon.png'
+import stick from '../../images/stick_icon.png'
+import vp_3 from '../../images/vp_3.png'
+import vp_5 from '../../images/vp_5.png'
+import vp_7 from '../../images/vp_7.png'
 
 const Board = ({ 
     board,

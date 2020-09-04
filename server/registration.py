@@ -1,4 +1,4 @@
-from server import app
+from server import app, socket
 
 from flask import request
 from firebase_admin import db
@@ -63,3 +63,9 @@ def create_player():
         db.reference('games').child(gameCode).set({ username: result })
 
     return result
+
+# TODO: Modify to join game instead of just connect
+@socket.on('connect')
+def on_connect():
+    print('user connected')
+    emit('retrieve_active_users', broadcast=True)

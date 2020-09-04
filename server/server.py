@@ -1,4 +1,6 @@
 from flask import Flask
+from flask_socketio import SocketIO
+from flask_cors import CORS
 
 import firebase_admin
 from firebase_admin import credentials
@@ -12,5 +14,8 @@ firebase_admin.initialize_app(
         'databaseURL': 'https://threelittlepigsv2.firebaseio.com'
     }
 )
+
+socket = SocketIO(app)
+CORS(app)
 
 import registration
