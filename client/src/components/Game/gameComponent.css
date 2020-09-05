@@ -1,17 +1,51 @@
-.boardContainer {
-    margin: 0;
-    position: absolute;
-    left: 17%;
-    top: 87%;
-    width: 33%;
-    transform: translate(-50%, -50%);
+.gameScreenContainer {
+    display: flex;
+    flex-direction: column;
 }
 
-.statsContainer {
-    margin: 0;
-    position: absolute;
-    left: 92%;
-    top: 82.5%;
-    width: 15%;
-    transform: translate(-50%, -50%);
+.personalBoardContainer {
+    width: 40%;
+    height: 40%;
+}
+
+.personalStatsContainer {
+    width: 20%;
+    height: 20%;
+}
+
+.opponentBoardContainer {
+    width: 30%;
+    height: 30%;
+    margin: 1%;
+}
+
+.opponentStatsContainer {
+    width: 20%;
+    height: 15%;
+    margin: 1%;
+}
+
+.personalContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 1%;
+}
+
+.opponentsContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.opponentsOneContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.opponentsTwoContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 }

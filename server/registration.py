@@ -45,17 +45,17 @@ def create_player():
 
     opponents = []
     if gameResult != None:
-        for player in gameResult.values():
+        for player in gameResult:
             opponents.append(
                 {
                     'username': player,
-                    'board': player['board'],
-                    'cards': player['cards'],
+                    'board': gameResult[player]['board'],
+                    'cards': gameResult[player]['cards'],
                     'stats': stats
                 }
             )
-            boardsResult.remove(player['board'])
-            for card in player['cards']:
+            boardsResult.remove(gameResult[player]['board'])
+            for card in gameResult[player]['cards']:
                 cardsResult.remove(card)
 
     board = random.sample(boardsResult, 1)[0]
