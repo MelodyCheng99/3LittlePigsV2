@@ -27,7 +27,8 @@ let StartGame = ({
     createPlayer,
     board,
     cards,
-    stats
+    stats,
+    opponents
 }) => {
     const classes = useStyles()
 
@@ -37,7 +38,8 @@ let StartGame = ({
                 board={board} 
                 cards={cards} 
                 username={username} 
-                stats={stats} />
+                stats={stats}
+                opponents={opponents} />
         )
     } else {
         return (
@@ -77,6 +79,7 @@ const mapStateToProps = (state) => ({
     board: state.board,
     cards: state.cards,
     stats: state.stats,
+    opponents: state.opponents
 })
 
 const mapDispatchToProps = {

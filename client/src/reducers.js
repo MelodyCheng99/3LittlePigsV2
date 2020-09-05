@@ -1,5 +1,4 @@
 const reducer = (state = {}, action) => {
-    console.log(action.type)
     switch (action.type) {
         case 'GAME_CODE_CREATED':
             return { ...state, gameCode: action.gameCode }
@@ -13,6 +12,11 @@ const reducer = (state = {}, action) => {
             }
         case 'JOIN_GAME':
             return { ...state, joinGameRequested: true }
+        case 'OPPONENT_CREATED':
+            return { 
+                ...state,
+                opponents: action.opponents
+            }
         default:
             return state
     }

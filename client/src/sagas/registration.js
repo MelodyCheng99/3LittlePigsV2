@@ -1,5 +1,9 @@
-import { put, takeLatest } from 'redux-saga/effects'
+import { put, takeLatest, take, select } from 'redux-saga/effects'
 import io from 'socket.io-client'
+import { channel } from '@redux-saga/core'
+
+const opponentCreatedChannel = channel()
+const getOpponents = (state) => state.opponents
 
 function* postGameCode() {
     const gameCodeResult = yield fetch(`/create-game`).then(response => response.json())
@@ -18,6 +22,14 @@ function* postPlayer(action) {
 
     const socket = io('http://localhost:5000')
     socket.emit('join_game', { gameCode: action.gameCode, username: action.username })
+    socket.on('opponent_joined_game', (opponent) => {
+        if (opponent['username'] != action.username) {
+            opponentCreatedChannel.put({
+                type: 'OPPONENT_CREATED',
+                opponents: [opponent]
+            })
+        }
+    })
 
     yield put({ 
         type: 'PLAYER_CREATED', 
@@ -31,4 +43,15 @@ function* postPlayer(action) {
 export function* registrationWatcher() {
     yield takeLatest('CREATE_GAME_CODE', postGameCode)
     yield takeLatest('CREATE_PLAYER', postPlayer)
+
+    while (true) {
+        const action = yield take(opponentCreatedChannel)
+
+        let opponents = yield select(getOpponents)
+        if (opponents != null) {
+            action.opponents.push(opponents[0])
+        }
+
+        yield put(action)
+    }
 }

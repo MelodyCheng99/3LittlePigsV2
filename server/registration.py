@@ -65,11 +65,9 @@ def create_player():
 
     return result
 
-########################################################################################
-
 @socket.on('join_game')
-def on_join_game(gameCode, username):
-    join_room(gameCode)
-    opponentResult = db.reference('games/' + gameCode).get()
-    print(opponentResult)
-    emit('opponent_joined_game', room=gameCode, broadcast=True)
+def on_join_game(data):
+    join_room(data['gameCode'])
+    opponentResult = db.reference('games/' + data['gameCode']).get()[data['username']]
+    opponentResult['username'] = data['username']
+    emit('opponent_joined_game', opponentResult, room=data['gameCode'], broadcast=True)

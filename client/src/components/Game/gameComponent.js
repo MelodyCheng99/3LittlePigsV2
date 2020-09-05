@@ -10,8 +10,10 @@ const Game = ({
     board,
     cards,
     stats,
-    username
+    username,
+    opponents
 }) => {
+    console.log(opponents)
     return (
         <div>
             <Cards cards={cards} />

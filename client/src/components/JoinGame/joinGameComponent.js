@@ -27,13 +27,14 @@ let JoinGame = ({
     createPlayer,
     board,
     cards,
-    stats
+    stats,
+    opponents
 }) => {
     const classes = useStyles()
 
     if (board != null && cards != null && username != null) {
         return (
-            <Game board={board} cards={cards} username={username} stats={stats} />
+            <Game board={board} cards={cards} username={username} stats={stats} opponents={opponents} />
         )
     } else {
         return (
@@ -75,6 +76,7 @@ const mapStateToProps = (state) => ({
     board: state.board,
     cards: state.cards,
     stats: state.stats,
+    opponents: state.opponents,
 })
 
 const mapDispatchToProps = {
