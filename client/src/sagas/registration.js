@@ -1,4 +1,5 @@
 import { put, takeLatest } from 'redux-saga/effects'
+import io from 'socket.io-client'
 
 function* postGameCode() {
     const gameCodeResult = yield fetch(`/create-game`).then(response => response.json())
@@ -14,6 +15,10 @@ function* postPlayer(action) {
         body: formData
     })
         .then(response => response.json())
+
+    const socket = io('http://localhost:5000')
+    socket.emit('join_game', { gameCode: action.gameCode, username: action.username })
+
     yield put({ 
         type: 'PLAYER_CREATED', 
         username: action.username,

@@ -4,6 +4,6 @@ import { registrationWatcher } from './registration'
 
 export default function* rootSaga() {
     yield all([
-        registrationWatcher(),
+        registrationWatcher()
     ])
 }

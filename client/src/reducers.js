@@ -1,4 +1,5 @@
 const reducer = (state = {}, action) => {
+    console.log(action.type)
     switch (action.type) {
         case 'GAME_CODE_CREATED':
             return { ...state, gameCode: action.gameCode }

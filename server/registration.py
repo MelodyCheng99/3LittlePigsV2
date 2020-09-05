@@ -1,6 +1,7 @@
 from server import app, socket
 
 from flask import request
+from flask_socketio import emit, join_room
 from firebase_admin import db
 
 import random
@@ -64,8 +65,11 @@ def create_player():
 
     return result
 
-# TODO: Modify to join game instead of just connect
-@socket.on('connect')
-def on_connect():
-    print('user connected')
-    emit('retrieve_active_users', broadcast=True)
+########################################################################################
+
+@socket.on('join_game')
+def on_join_game(gameCode, username):
+    join_room(gameCode)
+    opponentResult = db.reference('games/' + gameCode).get()
+    print(opponentResult)
+    emit('opponent_joined_game', room=gameCode, broadcast=True)

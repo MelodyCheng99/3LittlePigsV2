@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { green, blue } from '@material-ui/core/colors'
 
 import { connect } from 'react-redux'
-import { createGameCode, joinGame } from '../../actions'
+import { createGameCode, joinGame } from '../../actions/index'
 
 import './createOrJoinGameComponent.css'
 

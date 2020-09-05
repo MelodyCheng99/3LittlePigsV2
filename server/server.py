@@ -16,6 +16,6 @@ firebase_admin.initialize_app(
 )
 
 socket = SocketIO(app)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 import registration
