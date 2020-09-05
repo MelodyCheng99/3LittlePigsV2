@@ -32,9 +32,14 @@ let JoinGame = ({
 }) => {
     const classes = useStyles()
 
-    if (board != null && cards != null && username != null) {
+    if (board != null && cards != null && username != null && opponents != null) {
         return (
-            <Game board={board} cards={cards} username={username} stats={stats} opponents={opponents} />
+            <Game 
+                board={board} 
+                cards={cards} 
+                username={username} 
+                stats={stats} 
+                opponents={opponents} />
         )
     } else {
         return (

@@ -36,7 +36,8 @@ function* postPlayer(action) {
         username: action.username,
         board: playerResult.board, 
         cards: playerResult.cards,
-        stats: playerResult.stats
+        stats: playerResult.stats,
+        opponents: playerResult.opponents
     })
 }
 
@@ -48,7 +49,7 @@ export function* registrationWatcher() {
         const action = yield take(opponentCreatedChannel)
 
         let opponents = yield select(getOpponents)
-        if (opponents != null) {
+        if (opponents.length != 0) {
             action.opponents.push(opponents[0])
         }
 

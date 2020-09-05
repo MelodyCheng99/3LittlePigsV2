@@ -8,7 +8,8 @@ const reducer = (state = {}, action) => {
                 username: action.username, 
                 board: action.board, 
                 cards: action.cards,
-                stats: action.stats 
+                stats: action.stats,
+                opponents: action.opponents
             }
         case 'JOIN_GAME':
             return { ...state, joinGameRequested: true }

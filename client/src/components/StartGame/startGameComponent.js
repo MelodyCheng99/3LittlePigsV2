@@ -32,7 +32,7 @@ let StartGame = ({
 }) => {
     const classes = useStyles()
 
-    if (board != null && cards != null && username != null) {
+    if (board != null && cards != null && username != null && opponents != null) {
         return (
             <Game 
                 board={board} 
