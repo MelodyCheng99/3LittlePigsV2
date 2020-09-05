@@ -11,12 +11,7 @@
     width: 25%;
 }
 
-.opponentBoardContainer {
-    width: 50%;
-    margin: 0.5%;
-}
-
-.opponentStatsContainer {
+.opponentBoardOrStatsContainer {
     width: 50%;
     margin: 0.5%;
 }
@@ -35,12 +30,7 @@
     margin: 0.5%;
 }
 
-.opponentsOneContainer {
-    display: flex;
-    flex-direction: row;
-}
-
-.opponentsTwoContainer {
+.opponentContainer {
     display: flex;
     flex-direction: row;
 }

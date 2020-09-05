@@ -5,6 +5,8 @@ import { channel } from '@redux-saga/core'
 const opponentCreatedChannel = channel()
 const getOpponents = (state) => state.opponents
 
+const socket = io('http://localhost:5000')
+
 function* postGameCode() {
     const gameCodeResult = yield fetch(`/create-game`).then(response => response.json())
     yield put({ type: 'GAME_CODE_CREATED', gameCode: gameCodeResult.gameCode })
@@ -20,7 +22,6 @@ function* postPlayer(action) {
     })
         .then(response => response.json())
 
-    const socket = io('http://localhost:5000')
     socket.emit('join_game', { gameCode: action.gameCode, username: action.username })
     socket.on('opponent_joined_game', (opponent) => {
         if (opponent['username'] != action.username) {
@@ -51,6 +52,10 @@ export function* registrationWatcher() {
         let opponents = yield select(getOpponents)
         if (opponents.length != 0) {
             action.opponents.push(opponents[0])
+        }
+
+        if (opponents.length === 2) {
+            socket.off('opponent_joined_game')
         }
 
         yield put(action)

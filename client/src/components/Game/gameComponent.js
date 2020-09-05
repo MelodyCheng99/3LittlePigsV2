@@ -18,11 +18,11 @@ const Game = ({
             <div className="opponentsContainer">
                 { 
                     opponents.length > 0 ? 
-                        <div className="opponentsOneContainer">
-                            <div className="opponentBoardContainer">
+                        <div className="opponentContainer">
+                            <div className="opponentBoardOrStatsContainer">
                                 <Board board={opponents[0].board} username={opponents[0].username} />
                             </div>
-                            <div className="opponentStatsContainer">
+                            <div className="opponentBoardOrStatsContainer">
                                 <Stats stats={opponents[0].stats} />
                             </div>
                         </div> : 
@@ -30,11 +30,11 @@ const Game = ({
                 }
                 {
                     opponents.length > 1 ?
-                        <div className="opponentsTwoContainer">
-                            <div className="opponentStatsContainer">
+                        <div className="opponentContainer">
+                            <div className="opponentBoardOrStatsContainer">
                                 <Stats stats={opponents[1].stats} />
                             </div>
-                            <div className="opponentBoardContainer">
+                            <div className="opponentBoardOrStatsContainer">
                                 <Board board={opponents[1].board} username={opponents[1].username} />
                             </div>
                         </div> :
