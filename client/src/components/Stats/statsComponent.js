@@ -17,47 +17,62 @@ import vp from '../../images/vp_icon.png'
 import water from '../../images/water_icon.png'
 import wolf from '../../images/wolf_icon.png'
 
+function getStatsIcon(stat) {
+    if (stat === "Apples") {
+        return <img src={apple} alt="apple icon" className="icon" />
+    } else if (stat === "Bricks") {
+        return <img src={brick} alt="brick icon" className="icon" />  
+    } else if (stat === "Coins") {
+        return <img src={coin} alt="coin icon" className="icon" />
+    } else if (stat === "Flowers") {
+        return <img src={flower} alt="flower icon" className="icon" />  
+    } else if (stat === "Glass") {
+        return <img src={glass} alt="glass icon" className="icon" />  
+    } else if (stat === "Mud") {
+        return <img src={mud} alt="mud icon" className="icon" />
+    } else if (stat === "Pots") {
+        return <img src={pot} alt="pot icon" className="icon" />  
+    } else if (stat === "Spoons") {
+        return <img src={spoon} alt="spoon icon" className="icon" />  
+    } else if (stat === "Sticks") {
+        return <img src={stick} alt="stick icon" className="icon" />
+    } else if (stat === "Stones") {
+        return <img src={stone} alt="stone icon" className="icon" />
+    } else if (stat === "Victory Points") {
+        return <img src={vp} alt="vp icon" className="icon" />  
+    } else if (stat === "Water") {
+        return <img src={water} alt="water icon" className="icon" />  
+    } else if (stat === "Wolves") {
+        return <img src={wolf} alt="wolf icon" className="icon" />
+    }
+}
+
 const Stats = ({
     stats,
 }) => {
     let statsView = []
-    Object.keys(stats).forEach((stat) => {
-        let imageView;
-        if (stat === "Apples") {
-            imageView = <img src={apple} alt="apple icon" className="icon" />
-        } else if (stat === "Bricks") {
-            imageView = <img src={brick} alt="brick icon" className="icon" />  
-        } else if (stat === "Coins") {
-            imageView = <img src={coin} alt="coin icon" className="icon" />
-        } else if (stat === "Flowers") {
-            imageView = <img src={flower} alt="flower icon" className="icon" />  
-        } else if (stat === "Glass") {
-            imageView = <img src={glass} alt="glass icon" className="icon" />  
-        } else if (stat === "Mud") {
-            imageView = <img src={mud} alt="mud icon" className="icon" />
-        } else if (stat === "Pots") {
-            imageView = <img src={pot} alt="pot icon" className="icon" />  
-        } else if (stat === "Spoons") {
-            imageView = <img src={spoon} alt="spoon icon" className="icon" />  
-        } else if (stat === "Sticks") {
-            imageView = <img src={stick} alt="stick icon" className="icon" />
-        } else if (stat === "Stones") {
-            imageView = <img src={stone} alt="stone icon" className="icon" />
-        } else if (stat === "Victory Points") {
-            imageView = <img src={vp} alt="vp icon" className="icon" />  
-        } else if (stat === "Water") {
-            imageView = <img src={water} alt="water icon" className="icon" />  
-        } else if (stat === "Wolves") {
-            imageView = <img src={wolf} alt="wolf icon" className="icon" />
-        }
+    const statsKeys = Object.keys(stats)
+    for (let i = 0; i < statsKeys.length; i += 2) {
+        const imageViewLeft = getStatsIcon(statsKeys[i]);
+        const imageViewRight = getStatsIcon(statsKeys[i + 1])
 
         statsView.push(
             <div className="listItem">
-                { imageView }
-                <Typography>{ stat + ' : ' + stats[stat] }</Typography>
+                <div className="listItemLeft">
+                    { imageViewLeft }
+                    <Typography>{ statsKeys[i] + ' : ' + stats[statsKeys[i]] }</Typography>
+                </div>
+                {
+                    imageViewRight ?
+                        <div className="listItemRight">
+                            { imageViewRight }
+                            <Typography>{ statsKeys[i + 1] + ' : ' + stats[statsKeys[i + 1]] }</Typography>
+                        </div> :
+                    null
+                }
             </div>
         )
-    })
+    }
 
     return (
         <Box className="statsBox">
