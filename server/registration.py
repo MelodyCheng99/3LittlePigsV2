@@ -28,19 +28,19 @@ def create_player():
     cardsResult.pop(0)
 
     stats = {
-        'Coins': 3,
-        'Bricks': 0,
-        'Sticks': 0,
-        'Mud': 0,
-        'Stones': 0,
-        'Wolves': 0,
-        'Pots': 0,
-        'Spoons': 0,
-        'Apples': 0,
-        'Flowers': 0,
-        'Glass': 0,
-        'Water': 0,
-        'Victory Points': 0
+        'coins': 3,
+        'bricks': 0,
+        'sticks': 0,
+        'mud': 0,
+        'stones': 0,
+        'wolves': 0,
+        'pots': 0,
+        'spoons': 0,
+        'apples': 0,
+        'flowers': 0,
+        'glass': 0,
+        'water': 0,
+        'victory points': 0
     }
 
     opponents = []

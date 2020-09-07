@@ -18,6 +18,15 @@ const reducer = (state = {}, action) => {
                 ...state,
                 opponents: action.opponents
             }
+
+        case 'CARD_SELECTED':
+            return { 
+                ...state, 
+                selectedCard: action.selectedCard,
+                canPurchase: action.canPurchase, 
+                canSelect: action.canSelect
+            }
+        
         default:
             return state
     }

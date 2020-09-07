@@ -1,0 +1,18 @@
+.cardRowContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.purchaseCardContainer {
+    margin-top: 10px;
+}
+
+.disposeCardContainer {
+    margin-left: 50px;
+}
+
+.backButtonContainer {
+    margin-right: 50px;
+}

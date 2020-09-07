@@ -18,31 +18,31 @@ import water from '../../images/water_icon.png'
 import wolf from '../../images/wolf_icon.png'
 
 function getStatsIcon(stat) {
-    if (stat === "Apples") {
+    if (stat === "apples") {
         return <img src={apple} alt="apple icon" className="icon" />
-    } else if (stat === "Bricks") {
+    } else if (stat === "bricks") {
         return <img src={brick} alt="brick icon" className="icon" />  
-    } else if (stat === "Coins") {
+    } else if (stat === "coins") {
         return <img src={coin} alt="coin icon" className="icon" />
-    } else if (stat === "Flowers") {
+    } else if (stat === "flowers") {
         return <img src={flower} alt="flower icon" className="icon" />  
-    } else if (stat === "Glass") {
+    } else if (stat === "glass") {
         return <img src={glass} alt="glass icon" className="icon" />  
-    } else if (stat === "Mud") {
+    } else if (stat === "mud") {
         return <img src={mud} alt="mud icon" className="icon" />
-    } else if (stat === "Pots") {
+    } else if (stat === "pots") {
         return <img src={pot} alt="pot icon" className="icon" />  
-    } else if (stat === "Spoons") {
+    } else if (stat === "spoons") {
         return <img src={spoon} alt="spoon icon" className="icon" />  
-    } else if (stat === "Sticks") {
+    } else if (stat === "sticks") {
         return <img src={stick} alt="stick icon" className="icon" />
-    } else if (stat === "Stones") {
+    } else if (stat === "stones") {
         return <img src={stone} alt="stone icon" className="icon" />
-    } else if (stat === "Victory Points") {
+    } else if (stat === "victory points") {
         return <img src={vp} alt="vp icon" className="icon" />  
-    } else if (stat === "Water") {
+    } else if (stat === "water") {
         return <img src={water} alt="water icon" className="icon" />  
-    } else if (stat === "Wolves") {
+    } else if (stat === "wolves") {
         return <img src={wolf} alt="wolf icon" className="icon" />
     }
 }
@@ -53,20 +53,26 @@ const Stats = ({
     let statsView = []
     const statsKeys = Object.keys(stats)
     for (let i = 0; i < statsKeys.length; i += 2) {
-        const imageViewLeft = getStatsIcon(statsKeys[i]);
-        const imageViewRight = getStatsIcon(statsKeys[i + 1])
+        const statsLeft = statsKeys[i]
+        const statsRight = statsKeys[i + 1]
+        const imageViewLeft = getStatsIcon(statsLeft);
+        const imageViewRight = getStatsIcon(statsRight)
 
         statsView.push(
             <div className="listItem">
                 <div className="listItemLeft">
                     { imageViewLeft }
-                    <Typography>{ statsKeys[i] + ' : ' + stats[statsKeys[i]] }</Typography>
+                    <Typography>
+                        { statsLeft.charAt(0).toUpperCase() + statsLeft.slice(1) + ' : ' + stats[statsLeft] }
+                    </Typography>
                 </div>
                 {
                     imageViewRight ?
                         <div className="listItemRight">
                             { imageViewRight }
-                            <Typography>{ statsKeys[i + 1] + ' : ' + stats[statsKeys[i + 1]] }</Typography>
+                            <Typography>
+                                { statsRight.charAt(0).toUpperCase() + statsRight.slice(1) + ' : ' + stats[statsRight] }
+                            </Typography>
                         </div> :
                     null
                 }
