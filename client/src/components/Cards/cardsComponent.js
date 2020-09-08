@@ -26,6 +26,7 @@ import trade_both from '../../images/market_both.png'
 
 import { connect } from 'react-redux'
 import { selectCard } from '../../actions/index'
+
 import SelectCard from '../SelectCard/selectCardComponent'
 
 function getCardView(card, selectCard) {

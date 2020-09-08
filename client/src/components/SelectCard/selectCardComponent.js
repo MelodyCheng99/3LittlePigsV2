@@ -3,6 +3,11 @@ import { Fab } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { green, red, grey } from '@material-ui/core/colors'
 
+import { connect } from 'react-redux'
+import { goBack, purchaseCard, disposeCard } from '../../actions/index'
+
+import Cards from '../Cards/cardsComponent'
+
 import './../Cards/cardsComponent.css'
 import './selectCardComponent.css'
 
@@ -206,46 +211,73 @@ function getCardView(card) {
     }
 }
 
-const SelectCard = ({
+let SelectCard = ({
     selectedCard,
-    canPurchase
+    canPurchase,
+    cards,
+    goBack,
+    disposeCard,
+    purchaseCard
 }) => {
     const classes = useStyles()
 
-    return (
-        <div>
-            <div className="cardRowContainer">
-                <div className="backButtonContainer">
-                    <Fab 
-                        variant="extended"
-                        color="inherit"
-                        className={classes.greyFab}>
-                        &#8592; Back
-                    </Fab>
+    if (selectedCard == null) {
+        return <Cards cards={cards} />
+    } else {
+        return (
+            <div>
+                <div className="cardRowContainer">
+                    <div className="backButtonContainer">
+                        <Fab 
+                            variant="extended"
+                            color="inherit"
+                            className={classes.greyFab}
+                            onClick={goBack} >
+                            &#8592; Back
+                        </Fab>
+                    </div>
+                    { getCardView(selectedCard) }
+                    <div className="disposeCardContainer">
+                        <Fab 
+                            variant="extended"
+                            color="inherit"
+                            className={classes.redFab}
+                            onClick={disposeCard} >
+                            &#128465; Dispose
+                        </Fab>
+                    </div>
                 </div>
-                { getCardView(selectedCard) }
-                <div className="disposeCardContainer">
-                    <Fab 
-                        variant="extended"
-                        color="inherit"
-                        className={classes.redFab}>
-                        &#128465; Dispose
-                    </Fab>
+                <div className="cardRowContainer purchaseCardContainer">
+                    { canPurchase ?
+                        <Fab
+                            variant="extended"
+                            color="inherit"
+                            className={classes.greenFab}
+                            onClick={purchaseCard} >
+                            Purchase
+                        </Fab> :
+                        null
+                    }
                 </div>
             </div>
-            <div className="cardRowContainer purchaseCardContainer">
-                { canPurchase ?
-                    <Fab
-                        variant="extended"
-                        color="inherit"
-                        className={classes.greenFab}>
-                        Purchase
-                    </Fab> :
-                    null
-                }
-            </div>
-        </div>
-    )
+        )
+    }
 }
+
+const mapStateToProps = (state) => ({
+    selectedCard: state.selectedCard,
+    cards: state.cards,
+})
+
+const mapDispatchToProps = {
+    goBack: goBack,
+    purchaseCard: purchaseCard,
+    disposeCard: disposeCard,
+}
+
+SelectCard = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SelectCard)
 
 export default SelectCard

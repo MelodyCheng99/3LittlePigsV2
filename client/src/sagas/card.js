@@ -32,6 +32,16 @@ function* selectCard(action) {
     })
 }
 
+function* purchaseCard() {
+
+}
+
+function* disposeCard() {
+    
+}
+
 export function* cardWatcher() {
     yield takeLatest('SELECT_CARD', selectCard)
+    yield takeLatest('PURCHASE_CARD', purchaseCard)
+    yield takeLatest('DISPOSE_CARD', disposeCard)
 }

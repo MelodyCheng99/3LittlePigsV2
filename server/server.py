@@ -19,3 +19,4 @@ socket = SocketIO(app, cors_allowed_origins="*")
 CORS(app)
 
 import registration
+import card

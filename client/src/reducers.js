@@ -26,6 +26,13 @@ const reducer = (state = {}, action) => {
                 canPurchase: action.canPurchase, 
                 canSelect: action.canSelect
             }
+        case 'GO_BACK':
+            return {
+                ...state,
+                selectedCard: null,
+                canPurchase: null,
+                canSelect: null
+            }
         
         default:
             return state
